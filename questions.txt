@@ -1,0 +1,104 @@
+A. System Design (1–25)
+1.Your URL shortener grows from 1k to 100k redirects/sec. What breaks first, and how do you scale it?
+2.How do you generate short codes that are unique across many servers and not guessable?
+3.Design a rate limiter for a public API. Which algorithm, and where does the state live?
+4.One viral key makes your cache expire under heavy traffic and the DB gets hammered. How do you prevent a cache stampede?
+5.Your system is 90% reads and the DB is struggling. Walk through caching, read replicas, and the consistency trade-offs.
+6.When do you shard a database? How do you pick the shard key, and what goes wrong if you pick badly?
+7.Design a notification service (email, SMS, push) that survives a provider outage.
+8.How do you make a payment endpoint idempotent so a client retry never double-charges?
+9.Explain the CAP theorem to a non-technical manager using a banking example.
+10.Design a chat system with group chats and offline message delivery.
+11.An order service must write to the DB and publish an event. How do you guarantee neither is lost? (Outbox pattern)
+12.One business transaction spans three microservices. How do you keep it consistent without 2PC? (Saga)
+13.When should a team move from a monolith to microservices, and how do you do it incrementally?
+14.Design an upload service for 5 GB files with resumable uploads.
+15.How do you scale a WebSocket server to 100k concurrent connections?
+16.A downstream API is slow and failing. How do you protect your own service? (Timeouts, circuit breaker, fallback)
+17.Design a job queue with retries, a dead-letter queue, and ordering guarantees.
+18.Design a news feed. Compare fan-out on write vs fan-out on read, including the celebrity problem.
+19.What belongs in an API gateway, and what should never go there?
+20.Design a multi-tenant SaaS backend. How do you isolate tenant data?
+21.A Kafka consumer crashes mid-batch and messages are replayed. How do you avoid duplicate processing?
+22.Design search autocomplete for 10M users.
+23.A sale is expected to bring 20x normal traffic in two weeks. What's your preparation plan?
+24.Design a "top-K trending" feature over a sliding time window.
+25.How do you add a column to a 500M-row Postgres table with zero downtime?
+B. Backend Engineering, Python/FastAPI (26–45)
+26.A FastAPI endpoint has p99 latency of 2 seconds. How do you find the cause?
+27.Compare threads, asyncio, and multiprocessing in Python. How does the GIL affect your choice?
+28.A long-running service's memory keeps growing. How do you find the leak?
+29.How do you configure a FastAPI service to handle 10k concurrent requests? (Workers, pools, async vs sync)
+30.Your DB connection pool is exhausted under load. What are the causes and fixes?
+31.What is the N+1 query problem? How do you detect and fix it?
+32.Design JWT auth with access and refresh tokens. Where are tokens stored, and how do you revoke them?
+33.Implement retry with exponential backoff. Why add jitter?
+34.A 500 MB CSV upload crashes your API. How do you redesign it?
+35.Report generation takes 3 minutes. How do you keep it out of the request cycle, and which tool do you use for it?
+36.How do you handle graceful shutdown on SIGTERM so in-flight requests finish?
+37.REST vs gRPC vs GraphQL for internal service communication: how do you choose?
+38.Offset vs cursor pagination on a 100M-row table. Which do you pick, and why?
+39.How do you version an API without breaking existing clients?
+40.A query is slow. How do you use EXPLAIN and indexing to fix it?
+41.Given a data shape and access pattern, how do you choose between Postgres, DynamoDB, and Redis?
+42.How do you implement structured logging with correlation IDs across services?
+43.How do you test code that depends on external APIs? (Mocks, contract tests, fixtures)
+44.Two users try to buy the last item at the same moment. How do you prevent overselling?
+45.Design a webhook receiver that never loses events and never processes one twice.
+C. Cloud, AWS (46–60)
+46.Design a highly available 3-tier web app on AWS. (VPC, subnets, ALB, Auto Scaling, RDS Multi-AZ)
+47.Lambda vs Fargate vs EC2 vs EKS: how do you choose for a given workload?
+48.Lambda cold starts are hurting latency. What are your options?
+49.Your AWS bill tripled overnight. How do you investigate, and how do you prevent a repeat?
+50.How do you give a workload access to S3 with no hardcoded keys? (IAM roles, IRSA)
+51.A user gets S3 403 even though a policy allows access. How do you debug it?
+52.Explain RTO and RPO. Which DR strategy fits a given budget? (Backup/restore, pilot light, warm standby, active-active)
+53.When do you scale on CPU vs queue depth vs request count?
+54.Private-subnet services need S3 and the internet. Compare NAT Gateway and VPC endpoints, including cost.
+55.Secrets Manager vs Parameter Store: when do you use each, and how does rotation work?
+56.Global users report high latency to your API and static site. What do you change? (CloudFront, regions)
+57.How do you run batch jobs on Spot Instances and survive interruptions?
+58.Migrate a 5 TB on-prem database to RDS with minimal downtime.
+59.Design a multi-account AWS setup with security guardrails. (Organizations, SCPs)
+60.What CloudWatch metrics and alarms do you set up for a production API?
+D. DevOps and SRE (61–75)
+61.Design a CI/CD pipeline for a FastAPI service, from commit to production.
+62.Your Docker image is 2 GB and builds take 15 minutes. How do you fix it?
+63.Rolling vs blue/green vs canary: how do you choose, and what are the rollback costs?
+64.A bad deploy is live. How do you roll back, and what do you do in the next hour?
+65.A pod is in CrashLoopBackOff and the logs are empty. How do you debug it?
+66.Explain liveness, readiness, and startup probes. What happens if you misconfigure each?
+67.How do you set up the Horizontal Pod Autoscaler for an API, and what are the common pitfalls?
+68.Why use remote Terraform state? Explain locking and drift.
+69.What is GitOps (ArgoCD), and why choose it over push-based deployment?
+70.How do you manage secrets in CI/CD pipelines and Kubernetes?
+71.Define an SLI, SLO, and error budget for your API. How do they change team decisions?
+72.How do you alert on p99 latency without causing alert fatigue? (Prometheus, Grafana)
+73.Logs vs metrics vs traces: when do you reach for each? Walk through a real incident.
+74.How do you secure the container supply chain? (Image scanning, signing, non-root, minimal base images)
+75.You're on call at 3 a.m. and the error rate is 40%. Walk through your first 15 minutes, then describe the postmortem you'd write.
+E. AI Engineering, RAG, LLMs, MLOps (76–100)
+76.Build a RAG chatbot over 10,000 PDFs. Describe the full architecture.
+77.How do you choose chunk size and overlap, and how do you evaluate the choice?
+78.RAG returns irrelevant answers. How do you tell whether retrieval or generation is at fault?
+79.When are hybrid search (BM25 + vector) and reranking worth the extra latency?
+80.Your RAG system hallucinates 30% of the time. Give a plan to reach 5%.
+81.How do you evaluate a RAG system? (Golden set, faithfulness, relevance, RAGAS)
+82.pgvector vs Pinecone vs Qdrant: how do you choose by scale and operational cost?
+83.How do you stop a multi-tenant RAG system from leaking one user's documents to another?
+84.What is prompt injection through retrieved documents, and how do you mitigate it?
+85.Your LLM API bill is too high. How do you cut it? (Caching, model routing, context trimming)
+86.RAG responses take 8 seconds. How do you get to 2? (Streaming, parallel retrieval, smaller context)
+87.How does semantic caching work, and what are its risks?
+88.Agent vs fixed chain: when do you use each, and how do agents fail?
+89.Self-host a model (vLLM) vs use a hosted API: how do you decide on cost, latency, and privacy?
+90.How do you handle LLM rate limits, timeouts, and provider outages in production?
+91.Online vs batch vs async inference: how do you choose and deploy an ML model as an API?
+92.A model's accuracy is dropping in production. How do you tell data drift from concept drift, and detect it without labels?
+93.What is training-serving skew, and how do you prevent it? (Feature store, shared preprocessing)
+94.How do you use MLflow for tracking and registry, and promote a model from staging to production?
+95.Design an automated retraining pipeline with safe rollout (shadow, canary, A/B).
+96.How do you make an ML experiment reproducible? (Data, code, environment, model versions)
+97.Fraud is 0.1% of your data. How do you choose metrics and handle the imbalance, and how would you explain it to a product manager?
+98.Explain embeddings and cosine similarity to someone non-technical.
+99.GPU inference is too expensive. What levers reduce cost? (Quantization, batching, autoscaling, smaller models)
